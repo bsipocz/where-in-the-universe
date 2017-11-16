@@ -1,9 +1,3 @@
-#################################################################
-### This python file is a flask app to take a date, time and location and calculate
-### the zenith at that time and find where the nearest objects are to you if you were
-### launched from there at the speed of light. Hosted on heroku. 
-##################################################################
-
 from __future__ import print_function, division, unicode_literals
 import numpy as np
 
@@ -16,9 +10,12 @@ app = Flask(__name__)
 def homepage():
 	return render_template('index.html')
 
-@app.route('/locations/<loc>/', methods=["GET", "POST"])
-def hello_world(loc):
-	return loc
+@app.route('/', methods=["GET", "POST"])
+def hello_world():
+	location = request.form('loc')
+	print("hello")
+	print(location)
+	return location
 
 
 
