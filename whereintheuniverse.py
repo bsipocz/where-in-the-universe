@@ -14,19 +14,18 @@ class ContactForm(Form):
 	year = TextField("dob_year")
 	submit = SubmitField("Where am I?!")
 
+
 @app.route('/', methods=["GET", "POST"])
 def homepage():
-	return render_template('index.html')
-
-@app.route('/', methods=["GET", "POST"])
-def hello_world():
-	form = ContactForm()
-	location = request.form('loc')
-	print("hello")
-	print(location)
-	return location 
-
+	message = ''
+	if request.method == "GET":
+		if request.args:
+			form = request.args
+			print(form["loc"])
+			#location = "mycat"
+			message = 'So because you were born in '+ form["loc"] +' on '+ form["day"]+'/'+form["month"]+'/'+form["year"]+' you would now be closest to Betelgeuse!'
+	return render_template('index.html', message=message)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

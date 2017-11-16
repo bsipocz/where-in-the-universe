@@ -13,8 +13,9 @@
 
 	<body>
 		<div id="container">
+			<div class=image id="home"><a href = "/"><img src="/static/home.jpg" width="60px" title="Back to Earth"></a></div>
 			<div id="header">Where in the Universe are you?</div><br>
-			<form action="" method="post">
+			<form action="" method="get">
 			Date of Birth <select name="day" id="dob_day">
 			    <option value="01">1</option>
 			    <option value="02">2</option>
@@ -62,13 +63,13 @@
 			    <option value="11">Nov</option>
 			    <option value="12">Dec</option>
 			</select>
-			<input type="text" id='dob_year' value=1989><br>
-  			<!-- Date of Birth: <input type="text" id="dob" value="15/05/1990"><br> -->
-  			Place of Birth: <input type="text" id="loc" value="Cape Town, South Africa"><br>
+			<input type="text" name="year" id="dob_year" value="1989">
+
+  			Place of Birth: <input type="text" name="loc" id="loc" value="Cape Town, South Africa"><br>
   			<br>
-  			<input type="submit" id="button" onclick="myFunction()" value="Where am I?!">
+  			<input type="submit" id="button" value="Where am I?!">
   			</form>
-  			<p id="demo"></p>
+  			<p id="demo">{{ message }}</p>
 
 		</div>
 
