@@ -38,11 +38,13 @@ def zenith_at_birth(address, time):
     return zenith_icrs, age
 
 
-def find_closest_star(coord, age):
+def find_closest_object(coord, age):
     now_coordinate = SkyCoord(coord, distance=age.value*u.lightyear)
-    closest_ind = np.argmin(now_coordinate.separation_3d(all_100lyr_coord))
+    separations = now_coordinate.separation_3d(all_100lyr_coord)
+    closest_ind = np.argmin(separations)
 
-    closest = all_100lyr[closest_ind]['object']
+    closest = Table(all_100lyr[closest_ind]['MAIN_ID'], names=('name', 'distance'))
+    closest['separation'] = separations['closest_ind']
 
     return closest
 
@@ -56,8 +58,13 @@ def homepage():
             time = form["year"]+'-'+form["month"]+'-'+form["day"]+" 00:00"
             location = form["loc"]
             zenith, age = zenith_at_birth(time, location)
-            close_objects = query_simbad(zenith, age)
-            message = 'So because you were born in '+ form["loc"] +' on '+ form["day"]+'/'+form["month"]+'/'+form["year"]+' you would now be closest to Betelgeuse!'
+            closest_object, separation, distance = find_closest_object(zenith, age)
+            message = ('So if you were born in '+ form["loc"] +' on '
+                       + form["day"]+'/'+form["month"]+'/'+form["year"]+
+                       'and you were launched from Earth at light speed you '
+                       'would now be closest to the star {} which would be {} '
+                       'light years away from you and is {} light years from '
+                       'Earth!'.format(closest['name'], closest['separation'], closest['distance']))
     return render_template('index.html', message=message)
 
 
