@@ -62,7 +62,7 @@ def homepage():
             time = form["year"]+'-'+form["month"]+'-'+form["day"]+" 00:00"
             location = form["loc"]
             zenith, age = zenith_at_birth(location, time)
-            closest_object, separation, distance = find_closest_object(zenith, age)
+            closest = find_closest_object(zenith, age)
             message = ('So if you were born in '+ form["loc"] +' on '
                        + form["day"]+'/'+form["month"]+'/'+form["year"]+
                        'and you were launched from Earth at light speed you '
