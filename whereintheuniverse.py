@@ -17,9 +17,12 @@ app = Flask(__name__)
 simbad = Simbad()
 simbad.add_votable_fields('parallax')
 all_100lyr = simbad.query_criteria('plx>32')
+all_100lyr['distance_lyr'] = all_100lyr['PLX_VALUE'].to(u.lightyear, equivalencies=u.parallax())
+
 all_100lyr_coord = SkyCoord(
     all_100lyr['RA'], all_100lyr['DEC'], unit=(u.hourangle, u.degree),
-    distance=all_100lyr['PLX_VALUE'].to(u.lightyear, equivalencies=u.parallax()))
+    distance=all_100lyr['distance_lyr'])
+
 
 def zenith_at_birth(address, time):
 
@@ -44,10 +47,9 @@ def find_closest_object(coord, age):
     separations = now_coordinate.separation_3d(all_100lyr_coord)
     closest_ind = np.argmin(separations)
 
-    closest['name'] = Table(all_100lyr[closest_ind]['MAIN_ID'])
-    closest['separation'] = separations['closest_ind']
-    closest['distance'] = all_100lyr[closest_int]['PLX_VALUE'].to(
-        u.lightyear, equivalencies=u.parallax)
+    closest= Table(all_100lyr['MAIN_ID', 'distance_lyr'][closest_ind],
+                   names=['name', 'distance'])
+    closest['separation'] = separations[closest_ind]
     return closest
 
 
