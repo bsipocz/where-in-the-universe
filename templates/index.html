@@ -7,7 +7,6 @@
 		<script type="text/javascript" src="static/app.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		 <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-
 		<title>Where am I in the Universe?</title>
 	</head>
 
@@ -20,7 +19,7 @@
   	</div>
 
 		<div id="container">
-			<div class=image id="home"><a href = "/"><img src="/static/home.jpg" width="60px" title="Back to Earth"></a></div>
+			<div id="home"><a href='\'><img src="/static/home.jpg" width=10% title="Back to Earth"></a></div>
 			<div id="header">Where in the Universe are you?</div><br>
 			<form action="" method="get">
 			Date of Birth <select name="day" id="dob_day">
@@ -70,13 +69,12 @@
 			    <option value="11">Nov</option>
 			    <option value="12">Dec</option>
 			</select>
-			<input type="text" name="year" id="dob_year" value="1989">
-
-  			Place of Birth: <input type="text" name="loc" id="loc" value="Cape Town, South Africa"><br>
-  			<br>
-  			<input type="submit" id="button" value="Where am I?!">
-  			</form>
-  			<p id="demo">{{ message }}</p>
+			<input type="text" name="year" id="dob_year" value="1989"><br>
+			<!-- Date of Birth: <input type="text" id="dob" value="15/05/1990"><br> -->
+			Place of Birth: <input name="loc" type="text" id="loc" value="Cape Town, South Africa"><br>
+			<input type="submit" id="button" value="Where am I?!">
+			</form>
+			<p id="demo">{{ message }}</p>
 
 		</div>
 
