@@ -6,6 +6,7 @@ from astropy.coordinates import EarthLocation, AltAz, ICRS, SkyCoord
 from astropy.time import Time
 import astropy.units as u
 from astroquery.simbad import Simbad
+from astropy.table import Table
 
 from flask import Flask, jsonify, render_template, request
 from werkzeug.contrib.cache import SimpleCache
@@ -57,7 +58,7 @@ def homepage():
             form = request.args
             time = form["year"]+'-'+form["month"]+'-'+form["day"]+" 00:00"
             location = form["loc"]
-            zenith, age = zenith_at_birth(time, location)
+            zenith, age = zenith_at_birth(location, time)
             closest_object, separation, distance = find_closest_object(zenith, age)
             message = ('So if you were born in '+ form["loc"] +' on '
                        + form["day"]+'/'+form["month"]+'/'+form["year"]+
