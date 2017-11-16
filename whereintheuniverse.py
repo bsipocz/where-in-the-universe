@@ -13,8 +13,12 @@ def homepage():
 			form = request.args
 			time = form["year"]+'-'+form["month"]+'-'+form["day"]+" 00:00"
 			location = form["loc"]
+			zenith, age = zenith_at_birth(time, location)
+			close_objects = query_simbad(zenith, age)
 			message = 'So because you were born in '+ form["loc"] +' on '+ form["day"]+'/'+form["month"]+'/'+form["year"]+' you would now be closest to Betelgeuse!'
 	return render_template('index.html', message=message)
+
+
 
 
 if __name__ == '__main__':
