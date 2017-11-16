@@ -11,6 +11,8 @@ def homepage():
 	if request.method == "GET":
 		if request.args:
 			form = request.args
+			time = form["year"]+'-'+form["month"]+'-'+form["day"]+" 00:00"
+			location = form["loc"]
 			message = 'So because you were born in '+ form["loc"] +' on '+ form["day"]+'/'+form["month"]+'/'+form["year"]+' you would now be closest to Betelgeuse!'
 	return render_template('index.html', message=message)
 
