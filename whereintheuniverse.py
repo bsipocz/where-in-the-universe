@@ -57,21 +57,24 @@ def find_closest_object(coord, age):
 @app.route('/', methods=["GET", "POST"])
 def homepage():
     message = ''
-    if request.method == "GET":
-        if request.args:
-            form = request.args
-            time = form["year"]+'-'+form["month"]+'-'+form["day"]+" 00:00"
-            location = form["loc"]
-            zenith, age = zenith_at_birth(location, time)
-            closest = find_closest_object(zenith, age)
-            message = ('So if you were born in '+ form["loc"] +' on '
-                       + form["day"]+'/'+form["month"]+'/'+form["year"]+
-                       'and you were launched from Earth at light speed you '
-                       'would now be closest to the star {} which would be {} '
-                       'light years away from you and is {} light years from '
-                       'Earth!'.format(closest['name'], closest['separation'], closest['distance']))
     return render_template('index.html', message=message)
 
+@app.route('/formuser', methods=["GET"])
+def formpage():
+	message=''
+	if request.method == "GET":
+		if request.args:
+			form = request.args
+			time = form["year"]+'-'+form["month"]+'-'+form["day"]+" "+form["time_hour"]+":"+form["time_minutes"]
+			location = form["loc"]
+			zenith, age = zenith_at_birth(location, time)
+			closest = find_closest_object(zenith, age)
+			message = ('If you were launched from Earth at light speed from '+ form["loc"] +' on '
+                       + form["day"]+'/'+form["month"]+'/'+form["year"]+' at '+form['time_hour']+':'+form["time_minutes"]+
+                       ', you would now be closest to the star {} which would be {:.2f} '
+                       'light years away from you and {:.2f} light years from '
+                       'Earth! Turns out space is really empty.'.format(closest['name'].decode("utf-8"), closest['separation'], closest['distance']))
+	return message
 
 if __name__ == '__main__':
     app.run(debug=True)

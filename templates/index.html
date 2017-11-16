@@ -9,22 +9,51 @@
 		 <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 		 <link rel="icon" type="image/png" href="static/home.jpg" sizes="16x16" />
 		<title>Where am I in the Universe?</title>
+
+		<script>
+
+
+			function changegif(response) {
+				$('.animated-gif').attr("src","static/launching.gif");
+				setTimeout(function() {
+					$('.animated-gif').attr("src","static/stars.jpg");
+					$('#demo').html(response);
+				}, 5500);
+				return false;
+			}
+
+			$(function() {
+				$('input#button').click(function() {
+					$.ajax({
+						url: '/formuser',
+						data: $('form').serialize(),
+						type: "GET",
+						success: function(response){
+							changegif(response);
+							// window.location.search=$('form').serialize();
+						}
+					});
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 
-		<div class="video-background">
+<!-- 		<div class="video-background">
     	<div class="video-foreground">
       	<iframe src="https://youtube.com/embed/s39mNwFuQDQ?autoplay=1&controls=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
-      	<!-- <iframe src="static/pre_launch.gif" width="2560"></iframe> -->
+      	<iframe src="static/pre_launch.gif" frameborder="0" allowfullscreen name="pre_launch"></iframe>
     	</div>
-  	</div>
+  	</div> -->
+
+  		<div><img class="animated-gif" src="static/pre_launch.gif"></div>
 
 		<div id="container">
 			<div id="home"><a href='\'><img src="/static/home.jpg" width=10% title="Back to Earth"></a></div>
 			<div id="header">Where in the Universe are you?</div><br>
-			<form action="" method="get">
-			Date of Birth <select name="day" id="dob_day">
+			<form action="" method="get" onsubmit="return changegif()">
+			Date of Birth: <select name="day" id="dob_day">
 			    <option value="01">1</option>
 			    <option value="02">2</option>
 			    <option value="03">3</option>
@@ -71,24 +100,107 @@
 			    <option value="11">Nov</option>
 			    <option value="12">Dec</option>
 			</select>
-			<input type="text" name="year" id="dob_year" value="1989"><br>
+			<input type="text" name="year" id="dob_year" value="1989"> <select name="time_hour" id="dob_time_hour">
+				<option value="00">00</option>
+				<option value="01">01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+				<option value="09">09</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+			</select> :
+			<select name="time_minutes" id="dob_time_minutes">
+				<option value="00">00</option>
+				<option value="01">01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+				<option value="09">09</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+				<option value="32">32</option>
+				<option value="33">33</option>
+				<option value="34">34</option>
+				<option value="35">35</option>
+				<option value="36">36</option>
+				<option value="37">37</option>
+				<option value="38">38</option>
+				<option value="39">39</option>
+				<option value="40">40</option>
+				<option value="41">41</option>
+				<option value="42">42</option>
+				<option value="43">43</option>
+				<option value="44">44</option>
+				<option value="45">45</option>
+				<option value="46">46</option>
+				<option value="47">47</option>
+				<option value="48">48</option>
+				<option value="49">49</option>
+				<option value="50">50</option>
+				<option value="51">51</option>
+				<option value="52">52</option>
+				<option value="53">53</option>
+				<option value="54">54</option>
+				<option value="55">55</option>
+				<option value="56">56</option>
+				<option value="57">57</option>
+				<option value="58">58</option>
+				<option value="59">59</option>
+			</select><br>
+
 			<!-- Date of Birth: <input type="text" id="dob" value="15/05/1990"><br> -->
 			Place of Birth: <input name="loc" type="text" id="loc" value="Cape Town, South Africa"><br>
+			<br>
+			<br>
 			<input type="submit" id="button" value="Where am I?!">
 			</form>
-			<p id="demo">{{ message }}</p>
+			</div>
+			<div id="demo">{{ message }}</div>
 
-		</div>
 
-	<script>
-	function myFunction() {
-	    var x_d = document.getElementById("dob_day").value;
-	    var x_m = document.getElementById("dob_month").value;
-	    var x_y = document.getElementById("dob_year").value
-	    var y = document.getElementById("loc").value;
-	    document.getElementById("demo").innerHTML = 'So because you were born in '+ y +' on '+ x_d+'/'+x_m+'/'+x_y+' you would now be closest to Betelgeuse!';
-	}
-	</script>
 	</body>
+
+
 
 </html>
