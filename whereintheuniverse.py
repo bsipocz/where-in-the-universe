@@ -3,19 +3,28 @@ import numpy as np
 
 from flask import Flask, jsonify, render_template, request
 from werkzeug.contrib.cache import SimpleCache
+from wtforms import Form, TextField, TextAreaField, SubmitField
 cache = SimpleCache()
 app = Flask(__name__)
 
-@app.route('/')
+class ContactForm(Form):
+	location = TextField("loc")
+	date = TextField("dob_day")
+	month = TextField("dob_month")
+	year = TextField("dob_year")
+	submit = SubmitField("Where am I?!")
+
+@app.route('/', methods=["GET", "POST"])
 def homepage():
 	return render_template('index.html')
 
 @app.route('/', methods=["GET", "POST"])
 def hello_world():
+	form = ContactForm()
 	location = request.form('loc')
 	print("hello")
 	print(location)
-	return location
+	return location 
 
 
 
