@@ -47,9 +47,10 @@ def find_closest_object(coord, age):
     separations = now_coordinate.separation_3d(all_100lyr_coord)
     closest_ind = np.argmin(separations)
 
-    closest= Table(all_100lyr['MAIN_ID', 'distance_lyr'][closest_ind],
-                   names=['name', 'distance'])
-    closest['separation'] = separations[closest_ind]
+    closest= {'name': all_100lyr['MAIN_ID'][closest_ind],
+              'distance': all_100lyr['distance_lyr'][closest_ind],
+              'separation': separations[closest_ind]}
+        
     return closest
 
 
