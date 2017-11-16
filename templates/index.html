@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		 <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+		<title>Where am I in the Universe?</title>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="header">Where in the Universe are you?</div><br>
+			Date of Birth <select name="day" id="dob_day">
+			    <option value="01">1</option>
+			    <option value="02">2</option>
+			    <option value="03">3</option>
+			    <option value="04">4</option>
+			    <option value="05">5</option>
+			    <option value="06">6</option>
+			    <option value="07">7</option>
+			    <option value="08">8</option>
+			    <option value="09">9</option>
+			    <option value="10">10</option>
+			    <option value="11">11</option>
+			    <option value="12">12</option>
+			    <option value="13">13</option>
+			    <option value="14">14</option>
+			    <option value="15">15</option>
+			    <option value="16">16</option>
+			    <option value="17">17</option>
+			    <option value="18">18</option>
+			    <option value="19">19</option>
+			    <option value="20">20</option>
+			    <option value="21">21</option>
+			    <option value="22">22</option>
+			    <option value="23">23</option>
+			    <option value="24">24</option>
+			    <option value="25">25</option>
+			    <option value="26">26</option>
+			    <option value="27">27</option>
+			    <option value="28">28</option>
+			    <option value="29">29</option>
+			    <option value="30">30</option>
+			    <option value="31">31</option>
+			</select>
+			<select name="month" id="dob_month">
+			    <option value="01">Jan</option>
+			    <option value="02">Feb</option>
+			    <option value="03">Mar</option>
+			    <option value="04">Apr</option>
+			    <option value="05">May</option>
+			    <option value="06">Jun</option>
+			    <option value="07">Jul</option>
+			    <option value="08">Aug</option>
+			    <option value="09">Sep</option>
+			    <option value="10">Oct</option>
+			    <option value="11">Nov</option>
+			    <option value="12">Dec</option>
+			</select>
+			<input type="text" id='dob_year' value=1989><br>
+  			<!-- Date of Birth: <input type="text" id="dob" value="15/05/1990"><br> -->
+  			Place of Birth: <input type="text" id="loc" value="Cape Town, South Africa"><br>
+  			<br>
+  			<button id="button" onclick="myFunction()">Where am I?!</button>
+  			<p id="demo"></p>
+
+		</div>
+
+	<script>
+	function myFunction() {
+	    var x_d = document.getElementById("dob_day").value;
+	    var x_m = document.getElementById("dob_month").value;
+	    var x_y = document.getElementById("dob_year").value
+	    var y = document.getElementById("loc").value;
+	    document.getElementById("demo").innerHTML = 'So because you were born in '+ y +' on '+ x_d+'/'+x_m+'/'+x_y+' you would now be closest to Betelgeuse!';
+	}
+	</script>
+	</body>
+
+</html>
