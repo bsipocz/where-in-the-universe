@@ -1,1 +1,1 @@
-web: gunicorn whereintheuniverse:app
+web: gunicorn -t 60 whereintheuniverse:app
